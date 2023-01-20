@@ -9,31 +9,32 @@ using namespace std;
 равного количеству последующих неявных параметров.
 Второй вариант - с использованием концевого признака.
 */
-int function_one(int temp,...)
+void function_one(int temp,...)
 {
     int* pk = &temp;
     //подсчет суммы
     //temp - количество параметров
-    long sm = 0;
     for (; temp; temp--)
-        sm += *(++pk);
-    return sm;
+    {
+        cout << "pk = " << hex << *(pk) << ' ' << " | ";
+        cout << endl;
+    }
 }
-int function_two(int temp, ...)
+void function_two(int temp, ...)
 {
     int* pk = &temp;
-    long sm = 0;
     //движемся до тех пор,
     //пока не встретим значение 0 (признак окончания списка параметров)
     while (*pk)
         //подсчет суммы
-        sm += *(pk++);
-    return sm;
+        cout << "pk = " << hex << *(pk++) << ' ' << " | ";
+        cout << endl;
 }
 int main()
 {
-    cout << "function_one = " << function_one(1, 5, 0) << endl;
-    cout << "function_two = " << function_two(1, 6, 0) << endl;
+    function_one(10, 1, 2);
+    cout << endl;
+    function_two(5, 6, 0);
 
     return 0;
 }
